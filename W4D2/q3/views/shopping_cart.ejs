@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shopping cart</title>
+    <link
+      href="http://localhost:3000/static/product_list.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <%- include('nav') -%>
+    <div id="container">
+      <h2>Item List</h2>
+      <div class="item-list">
+        <% for(let cart in carts) { %>
+        <div class="item">
+          <div></div>
+          <div><%= carts[cart].name %></div>
+          <div><%= carts[cart].price %>$</div>
+          <div><%= carts[cart].quantity %></div>
+          <div>
+            <form method="post" action="/remove_from_cart">
+              <input hidden name="id" value="<%=carts[cart].id%>" />
+              <input type="submit" value="remove" />
+            </form>
+          </div>
+        </div>
+        <% } %>
+      </div>
+    </div>
+  </body>
+</html>
